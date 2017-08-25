@@ -1,12 +1,5 @@
-let fetch;
-try {
-  fetch();
-} catch (e) {
-  if (e.name == "TypeError") {
-    fetch = require("node-fetch");
-  }
-}
-const cheerio = require("react-native-cheerio");
+const fetch = require("node-fetch");
+const cheerio = require("cheerio");
 const endpoints = require("./endpoints");
 
 class Anime {
