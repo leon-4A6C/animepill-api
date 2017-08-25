@@ -133,9 +133,3 @@ class Anime {
 }
 
 module.exports = Anime;
-
-const client = new Anime();
-
-client.search("Boku no Hero Academia 2nd Season")
-    .then(res => res[0].getEpisodes())
-    .then(eps => console.log(eps));
