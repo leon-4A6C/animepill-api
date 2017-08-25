@@ -85,7 +85,7 @@ class Anime {
             $(".anime__episodes").children().each((i, elem) => {
               elem = $(elem);
               const href = elem.find("a").attr("href");
-              const episode = parseInt(href.substring(href.lastIndexOf("-")+1, href.length)) || 1;
+              const episode = parseInt(href.substring(href.lastIndexOf("-")+1, href.length)) || 0;
               output[episode] = {
                 titles: elem.text().trim().split("\"").map(x => x.trim()).filter(x => x != ""),
                 href: href,
@@ -133,3 +133,9 @@ class Anime {
 }
 
 module.exports = Anime;
+
+const client = new Anime();
+
+client.search("Boku no Hero Academia 2nd Season")
+    .then(res => res[0].getEpisodes())
+    .then(eps => console.log(eps));
