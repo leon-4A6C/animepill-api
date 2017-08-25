@@ -1,6 +1,6 @@
 {
   "name": "react-native-animepill-api",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "repository": "https://github.com/leon-4A6C/animepill-api",
   "keywords": [
@@ -13,6 +13,6 @@
   "author": "leon in 't Veld <leon3110l@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "react-native-cheerio": "^1.0.0-rc.2"
+    "react-native-cheerio": "^1.0.0-rc.3"
   }
 }
