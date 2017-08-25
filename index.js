@@ -52,8 +52,13 @@ class Anime {
       .then(res => res.json())
   }
 
-  search(anime) {
-    return this._getJson(endpoints.search, {q: anime})
+  /**
+   * searches for anime
+   * @param {string} query - what you are searching for
+   * @returns {Promise<Object[]>} an array with results
+   */
+  search(query) {
+    return this._getJson(endpoints.search, {q: query})
       .then(res => {
         return new Promise((resolve, reject) => {
           const output = [];
@@ -65,24 +70,29 @@ class Anime {
       });
   }
 
+  /**
+   * gets episodes of an anime
+   * @param {string} slug - the slug of an anime you can get a slug in a search
+   * @returns {Promise<Object>} an object with all the episodes
+   */
   getEpisodes(slug) {
     return this._get(endpoints.eps, {}, {slug: slug})
       .then(html => {
         return new Promise((resolve, reject) => {
           try {
             const $ = cheerio.load(html);
-            const output = [];
+            const output = {};
             $(".anime__episodes").children().each((i, elem) => {
               elem = $(elem);
               const href = elem.find("a").attr("href");
               const episode = parseInt(href.substring(href.lastIndexOf("-")+1, href.length)) || 1;
-              output.push({
-                name: elem.text(),
+              output[episode] = {
+                titles: elem.text().trim().split("\"").map(x => x.trim()).filter(x => x != ""),
                 href: href,
                 episode: episode,
                 slug: slug,
                 getEpisode: () => this.getEpisode(slug, episode)
-              });
+              };
             });
             resolve(output);
           } catch (e) {
@@ -92,6 +102,11 @@ class Anime {
       });
   }
 
+  /**
+   * searches for anime
+   * @param {string} slug - the slug of an anime you can get a slug in a search
+   * @returns {Promise<Object[]>} an array with the episode mp4 uri
+   */
   getEpisode(slug, ep) {
     return this._get(endpoints.ep, {}, {slug: slug, episode: ep})
       .then(html => {
