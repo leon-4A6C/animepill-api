@@ -1,0 +1,19 @@
+{
+  "name": "animepill-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/leon-4A6C/animepill-api",
+  "keywords": [
+    "anime",
+    "anime-api",
+    "anime videos",
+    "animepill",
+    "animepill-api"
+  ],
+  "author": "leon in 't Veld <leon3110l@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "node-fetch": "^1.7.2"
+  }
+}
