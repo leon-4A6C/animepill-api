@@ -1,4 +1,11 @@
-const fetch = require("node-fetch");
+let fetch;
+try {
+  fetch();
+} catch (e) {
+  if (e.name == "TypeError") {
+    fetch = require("node-fetch");
+  }
+}
 const cheerio = require("react-native-cheerio");
 const endpoints = require("./endpoints");
 
