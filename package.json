@@ -13,7 +13,7 @@
   "author": "leon in 't Veld <leon3110l@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "node-fetch": "^1.7.2"
+    "node-fetch": "^1.7.2",
+    "react-native-cheerio": "^1.0.0-rc.2"
   }
 }

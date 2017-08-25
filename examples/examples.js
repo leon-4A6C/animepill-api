@@ -2,7 +2,7 @@ const Anime = require("../");
 const client = new Anime();
 
 client.getEpisodes("bleach")
-  .then(eps => eps[0].getEpisode())
+  .then(eps => eps[3].getEpisode())
   .then(vids => console.log(vids));
 
 client.search("bleach")

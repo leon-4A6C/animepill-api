@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const cheerio = require("cheerio");
+const cheerio = require("react-native-cheerio");
 const endpoints = require("./endpoints");
 
 class Anime {
