@@ -42,6 +42,11 @@ class Anime {
   }
 
   _get(path, options, param) {
+    if(path.search(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/) != -1) {
+      // url is passed
+      return fetch(path)
+        .then(res => res.text())
+    }
     return fetch(this.base + this._parsePathParam(path, param) + this._genOptions(options))
       .then(res => res.text())
   }
@@ -95,7 +100,7 @@ class Anime {
                 href: href,
                 episode: episode,
                 slug: slug,
-                getEpisode: () => this.getEpisode(slug, episode)
+                getEpisode: () => this.getEpisode(href)
               };
             });
             resolve(output);
@@ -112,7 +117,13 @@ class Anime {
    * @returns {Promise<Object[]>} an array with the episode mp4 uri
    */
   getEpisode(slug, ep) {
-    return this._get(endpoints.ep, {}, {slug: slug, episode: ep})
+    let endpoint = endpoints.ep;
+    if(slug.search(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/) != -1) {
+      // url is passed
+      endpoint = slug;
+    }
+    
+    return this._get(endpoint, {}, {slug: slug, episode: ep})
       .then(html => {
         const $ = cheerio.load(html);
         return fetch($("#video-iframe").attr("src"))
