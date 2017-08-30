@@ -84,10 +84,15 @@ class Anime {
             const output = {};
             $(".anime__episodes").children().each((i, elem) => {
               elem = $(elem);
+              const titles = elem.text().trim().split("\"").map(x => x.trim()).filter(x => x != "");
               const href = elem.find("a").attr("href");
-              const episode = parseInt(href.substring(href.lastIndexOf("-")+1, href.length)) || 0;
+              let episode = titles[0].split(/([0-9]+)/)
+                .filter(x => x != "")
+                .filter(x => !isNaN(x))
+                .map(x => parseInt(x))             
+              episode = episode[episode.length-1]
               output[episode] = {
-                titles: elem.text().trim().split("\"").map(x => x.trim()).filter(x => x != ""),
+                titles: titles,
                 href: href,
                 episode: episode,
                 slug: slug,
