@@ -47,7 +47,7 @@ class Anime {
   _get(path, options, param) {
     if (
       path.search(
-        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/
       ) != -1
     ) {
       // url is passed
@@ -57,7 +57,7 @@ class Anime {
       this.prefix +
         this.base +
         this._parsePathParam(path, param) +
-        this._genOptions(options),
+        this._genOptions(options)
     ).then(res => res.text())
   }
 
@@ -66,7 +66,7 @@ class Anime {
       this.prefix +
         this.base +
         this._parsePathParam(path, param) +
-        this._genOptions(options),
+        this._genOptions(options)
     ).then(res => res.json())
   }
 
@@ -82,8 +82,8 @@ class Anime {
         for (let item of res.data) {
           output.push(
             Object.assign({}, item, {
-              getEpisodes: () => this.getEpisodes(item.slug),
-            }),
+              getEpisodes: () => this.getEpisodes(item.slug)
+            })
           )
         }
         resolve(output)
@@ -124,7 +124,7 @@ class Anime {
                 href: href,
                 episode: episode,
                 slug: slug,
-                getEpisode: () => this.getEpisode(href),
+                getEpisode: () => this.getEpisode(href)
               }
             })
           resolve(output)
@@ -144,7 +144,7 @@ class Anime {
     let endpoint = endpoints.ep
     if (
       slug.search(
-        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/
       ) != -1
     ) {
       // url is passed
@@ -161,13 +161,13 @@ class Anime {
               const searchPart = "<script type='text/javascript'>eval("
               html = html.substring(
                 html.indexOf(searchPart) + searchPart.length - 1,
-                html.length,
+                html.length
               )
               html = html.substring(0, html.indexOf('</script>'))
               html = eval(html)
               html = html.substring(
                 html.indexOf('myVideo.src(') + 'myVideo.src('.length,
-                html.length - 2,
+                html.length - 2
               )
               resolve(eval(html))
             } catch (e) {
