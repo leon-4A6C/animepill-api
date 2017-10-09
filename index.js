@@ -9,7 +9,7 @@ class Anime {
    * @param {string} url - the url to make request to, default: http://animepill.com
    */
   constructor(prefix = '', url) {
-    this.base = 'http://animepill.com' || url
+    this.base = url || 'http://animepill.com'
     this.prefix = prefix
   }
   // options can look like this
