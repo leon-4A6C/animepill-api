@@ -25,31 +25,32 @@ client.search("bleach")
 <a name="Anime"></a>
 
 ## Anime
-**Kind**: global class  
+**Kind**: global class
 
 * [Anime](#Anime)
-    * [new Anime(url)](#new_Anime_new)
+    * [new Anime(prefix, url)](#new_Anime_new)
     * [.search(query)](#Anime+search) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
     * [.getEpisodes(slug)](#Anime+getEpisodes) ⇒ <code>Promise.&lt;Object&gt;</code>
     * [.getEpisode(slug)](#Anime+getEpisode) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 
 <a name="new_Anime_new"></a>
 
-### new Anime(url)
+### new Anime(prefix, url)
 constructor, instantiates the object
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| url | <code>string</code> | the base url to use, default: http://animepill.com |
+| prefix | <code>string</code> | it uses this in front of the request, you could use this to prevent cors errors in browsers |
+| url | <code>string</code> | the url to make request to, default: http://animepill.com |
 
 <a name="Anime+search"></a>
 
 ### anime.search(query) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 searches for anime
 
-**Kind**: instance method of [<code>Anime</code>](#Anime)  
-**Returns**: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - an array with results  
+**Kind**: instance method of [<code>Anime</code>](#Anime)
+**Returns**: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - an array with results
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -60,8 +61,8 @@ searches for anime
 ### anime.getEpisodes(slug) ⇒ <code>Promise.&lt;Object&gt;</code>
 gets episodes of an anime
 
-**Kind**: instance method of [<code>Anime</code>](#Anime)  
-**Returns**: <code>Promise.&lt;Object&gt;</code> - an object with all the episodes  
+**Kind**: instance method of [<code>Anime</code>](#Anime)
+**Returns**: <code>Promise.&lt;Object&gt;</code> - an object with all the episodes
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -72,8 +73,8 @@ gets episodes of an anime
 ### anime.getEpisode(slug) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 searches for anime
 
-**Kind**: instance method of [<code>Anime</code>](#Anime)  
-**Returns**: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - an array with the episode mp4 uri  
+**Kind**: instance method of [<code>Anime</code>](#Anime)
+**Returns**: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - an array with the episode mp4 uri
 
 | Param | Type | Description |
 | --- | --- | --- |
